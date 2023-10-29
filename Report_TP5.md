@@ -105,16 +105,39 @@ public static void main(String[] args) {
 **Answer** :  Here's the modified Manifest class, functioning as required :
 
 ```java
-@Override
-public String toString() {
-	var builder = new StringBuilder();
-	var i = 1;
-	for(var obj : containers) {
-		builder.append(i).append(". ").append(obj).append("\n");
-		i++;
+package fr.uge.manifest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+
+public class Manifest {
+	private final ArrayList<Thing> containers = new ArrayList<>();
+	
+	public void add(Thing other) {
+		Objects.requireNonNull(other);
+		containers.add(other);
 	}
-	return builder.toString();
-}
+	
+	public int weight() {
+		var result = 0;
+		for(var obj : containers) {
+			result += obj.weight();
+		}
+		return result;
+	}
+	
+	@Override
+	public String toString() {
+		var builder = new StringBuilder();
+		var i = 1;
+		for(var obj : containers) {
+			builder.append(i).append(". ").append(obj).append("\n");
+			i++;
+		}
+		return builder.toString();
+	}
+}  
 ```
 And in order to ensure that this method functions well, we must override the `toString()` method in
 `container` record :
