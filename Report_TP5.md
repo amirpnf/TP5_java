@@ -589,7 +589,7 @@ Hash Map method, `getOrDefault`. This last method gets the value of a given key,
 method sets a default value for the key. Note that you we cannot create a Hash Map having primitive type value (Java doesn't allow that). We should use the Integer class (immutable by the way).
 
 ```java
-public HashMap<String, Integer> weightPerDestination(){
+public Map<String, Integer> weightPerDestination(){
   HashMap<String, Integer> weightMap = new HashMap<>();
   for(var obj : containers) {
   	weightMap.put(obj.getDestination(), weightMap.getOrDefault(obj.getDestination(), 0) + obj.weight());
